@@ -1,10 +1,11 @@
 import "./App.css";
 import EditableGoogleMap from "./components/EditableGoogleMap";
 import EditableImage from "./components/EditableImage";
+import ItemList from "./components/ItemList";
 
 function App() {
   return (
-    <div className="flex justify-center items-center h-screen w-screen flex-col">
+    <div className="flex justify-center items-center h-screen w-screen flex-col gap-5">
       <div className="w-[95vw] max-w-md">
         <EditableImage
           labelT="Image"
@@ -22,6 +23,9 @@ function App() {
             console.log(location);
           }}
         />
+      </div>
+      <div>
+        <ItemList />
       </div>
     </div>
   );
