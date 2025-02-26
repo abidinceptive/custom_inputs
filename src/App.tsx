@@ -1,7 +1,7 @@
 import "./App.css";
 import EditableGoogleMap from "./components/EditableGoogleMap";
 import EditableImage from "./components/EditableImage";
-import ItemList from "./components/ItemList";
+import ItemList from "./dashboard-items/ItemList";
 
 function App() {
   return (

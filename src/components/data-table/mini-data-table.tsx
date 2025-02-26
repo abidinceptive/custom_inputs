@@ -17,17 +17,17 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "./ui/table";
-import { Button } from "./ui/button";
+} from "../ui/table";
+import { Button } from "../ui/button";
 import { useState } from "react";
-import { Input } from "./ui/input";
+import { Input } from "../ui/input";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
 
-export function DataTable<TData, TValue>({
+export function MiniDataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
