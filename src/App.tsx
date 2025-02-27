@@ -1,7 +1,8 @@
-import "./App.css";
+// import "./App.css";
 import EditableGoogleMap from "./components/EditableGoogleMap";
 import EditableImage from "./components/EditableImage";
 import ItemList from "./dashboard-items/ItemList";
+import SampleSideBar from "./sidebar-sample/SampleSideBar";
 
 function App() {
   return (
@@ -24,8 +25,11 @@ function App() {
           }}
         />
       </div>
-      <div>
+      <div className="overflow-x-auto max-w-full">
         <ItemList />
+      </div>
+      <div>
+        <SampleSideBar />
       </div>
     </div>
   );
