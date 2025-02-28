@@ -2,14 +2,8 @@ import { useState } from "react";
 import { Home, Settings, User, FileText, HelpCircle } from "lucide-react";
 
 import AnimatedSidebarLayout from "@/components/AnimatedSidebarLayout";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+
+import CustomBreadCrumb from "@/components/CustomBreadcrumbs";
 
 const sidebarOptions = [
   { id: "home", labelT: "Home", icon: <Home size={20} /> },
@@ -19,32 +13,33 @@ const sidebarOptions = [
   { id: "help", labelT: "Help", icon: <HelpCircle size={20} /> },
 ];
 
+const initialBreadcrumbOptions = [
+  {
+    navto: "#",
+    labelT: "Home",
+  },
+];
+
 const SampleSideBar = () => {
   const [scene, setScene] = useState("home");
 
-  const CustomBreadCrumb = () => (
-    <Breadcrumb>
-      <BreadcrumbList>
-        <BreadcrumbItem className="hidden lg:block">
-          <BreadcrumbLink href="#">Building Your Application</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator className="hidden lg:block" />
-        <BreadcrumbItem>
-          <BreadcrumbPage>{scene}</BreadcrumbPage>
-        </BreadcrumbItem>
-      </BreadcrumbList>
-    </Breadcrumb>
-  );
+  const selectedMenuInfo = sidebarOptions.find((item) => item.id === scene);
+  const breadcrumbOptions = selectedMenuInfo
+    ? [
+        ...initialBreadcrumbOptions,
+        { navto: "#", labelT: selectedMenuInfo?.labelT },
+      ]
+    : initialBreadcrumbOptions;
 
   return (
     <AnimatedSidebarLayout
       sidebarMenus={sidebarOptions}
       selectedSidebarMenu={scene}
       onSelectSidebarMenu={setScene}
-      breadCrumb={<CustomBreadCrumb />}
+      breadCrumb={<CustomBreadCrumb breadcrumbs={breadcrumbOptions} />}
       mainContent={
         <div className="flex flex-col w-full gap-2">
-          <CustomBreadCrumb />
+          <CustomBreadCrumb breadcrumbs={breadcrumbOptions} />
           <h2 className="text-2xl font-bold mb-4">{scene} Content</h2>
 
           <p className="mb-4">
