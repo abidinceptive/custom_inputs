@@ -6,7 +6,7 @@ import SampleSideBar from "./sidebar-sample/SampleSideBar";
 
 function App() {
   return (
-    <div className="flex justify-center items-center h-screen w-screen flex-col gap-5">
+    <div className="flex justify-center items-center min-h-screen w-screen flex-col gap-5">
       <div className="w-[95vw] max-w-md">
         <EditableImage
           labelT="Image"
