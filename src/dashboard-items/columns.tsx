@@ -6,6 +6,7 @@ import { Label } from "../components/ui/label";
 import { restaurantMenu, restaurantMenuDetail } from "./data";
 import { DataTableColumnHeader } from "../components/data-table/data-table-column-header";
 import { UpdateMenuForItem } from "./menu-popover";
+import { Checkbox } from "@/components/ui/checkbox";
 
 // 🔹 Correct function with proper type definition
 const getMenuIcon = (menuValue: string) => {
@@ -15,6 +16,28 @@ const getMenuIcon = (menuValue: string) => {
 };
 
 export const columns: ColumnDef<iItem>[] = [
+  {
+    id: "select",
+    header: ({ table }) => (
+      <Checkbox
+        checked={
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate")
+        }
+        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        aria-label="Select all"
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        aria-label="Select row"
+      />
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  },
   {
     accessorKey: "available",
     header: "Available",
