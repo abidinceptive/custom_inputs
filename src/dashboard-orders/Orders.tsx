@@ -1,3 +1,21 @@
+import { columns } from "./columns";
+import ordersData from "./data";
+import { DataTable } from "./data-table";
+
+export type OrderStatus =
+  | "created"
+  | "accepted"
+  | "rejected"
+  | "cancelled"
+  | "modified"
+  | "completed";
+
+export interface iOrderActivity {
+  status: OrderStatus;
+  timestamp: string; // ISO string format for timestamps
+  doneBy?: string; // userId
+}
+
 export interface iOrderItem {
   id: number;
   orderId: string;
@@ -14,12 +32,17 @@ export interface iOrder {
   totalQuantity: number;
   paymentMethod: string;
   pickupOrDelivery: string; // 'pickup' | 'delivery'
-  stattus: string; // 'accepted' | 'completed' | 'cancelled' | 'rejected'
+  status: OrderStatus; // 'accepted' | 'completed' | 'cancelled' | 'rejected'
   items: iOrderItem[];
+  orderActivities: iOrderActivity[];
 }
 
 const Orders = () => {
-  return <div></div>;
+  return (
+    <div className="space-y-4">
+      <DataTable columns={columns} data={ordersData} />
+    </div>
+  );
 };
 
 export default Orders;

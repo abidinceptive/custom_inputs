@@ -3,6 +3,8 @@ import { ColumnDef } from "@tanstack/react-table";
 import { iOrder } from "./Orders";
 import { Label } from "../components/ui/label";
 import { DataTableColumnHeader } from "../components/data-table/data-table-column-header";
+import { Button } from "@/components/ui/button";
+import OrderProgressbar from "./OrderProgressbar";
 
 export const columns: ColumnDef<iOrder>[] = [
   {
@@ -11,12 +13,22 @@ export const columns: ColumnDef<iOrder>[] = [
     cell: ({ row }) => {
       const item = row.original;
       return (
-        <div className="flex items-center space-x-2">
-          <Label htmlFor="available">{item.name}</Label>
-          <p>{item.phone}</p>
+        <div className="flex items-start gap-2 flex-col">
+          <div className="flex items-center gap-2">
+            <Label htmlFor="available">{item.name}</Label>
+            <p>( {item.phone} )</p>
+          </div>
           <p>{item.items.map((product) => product.name)}</p>
         </div>
       );
+    },
+  },
+  {
+    accessorKey: "activities",
+    header: "Activity",
+    cell: ({ row }) => {
+      const item = row.original;
+      return <OrderProgressbar orderActivities={item.orderActivities} />;
     },
   },
   {
@@ -24,10 +36,6 @@ export const columns: ColumnDef<iOrder>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Status" />
     ),
-    cell: ({ row }) => {
-      const item = row.original;
-      return <p>{item.stattus}</p>;
-    },
   },
   {
     accessorKey: "totalPrice",
@@ -37,16 +45,7 @@ export const columns: ColumnDef<iOrder>[] = [
   },
   {
     accessorKey: "pickupOrDelivery",
-    header: "Pickup or Delivery",
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("price"));
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-
-      return <div className="text-right font-medium">{formatted}</div>;
-    },
+    header: "Pickup/Delivery",
   },
   {
     id: "view_items",
@@ -56,13 +55,10 @@ export const columns: ColumnDef<iOrder>[] = [
 
       return (
         <div className="flex gap-2 items-center">
-          {item.items.map((product) => product.name)}
+          <Button>View ({item.items.length})</Button>
+          {/* {item.items.map((product) => product.name)} */}
         </div>
       );
     },
-  },
-  {
-    accessorKey: "category",
-    header: "Category",
   },
 ];

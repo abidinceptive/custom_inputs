@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+// import { useMemo } from "react";
 import { Table } from "@tanstack/react-table";
 import { X } from "lucide-react";
 
@@ -6,39 +6,37 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { DataTableViewOptions } from "../components/data-table/data-table-view-options";
 
-import { DataTableFacetedFilter } from "../components/data-table/data-table-faceted-filter";
-import { restaurantCategoryDetail } from "./data";
-import { DataTableRestaurantMenuFilter } from "@/components/data-table/data-table-restaurant-menu-filter";
+// import { DataTableFacetedFilter } from "../components/data-table/data-table-faceted-filter";
+// import { restaurantCategoryDetail } from "./data";
+// import { DataTableRestaurantMenuFilter } from "@/components/data-table/data-table-restaurant-menu-filter";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
-  menuCount: Record<string, number>;
 }
 
 export function DataTableToolbar<TData>({
   table,
-  menuCount,
 }: DataTableToolbarProps<TData>) {
-  const isTableReady = table.getAllColumns().length > 0;
+  // const isTableReady = table.getAllColumns().length > 0;
 
-  const categoryColumn = table?.getColumn("category");
-  const menuColumn = table?.getColumn("menus");
+  // const categoryColumn = table?.getColumn("category");
+  // const menuColumn = table?.getColumn("menus");
 
-  const uniqueCategories = useMemo(() => {
-    if (!categoryColumn) {
-      return [];
-    }
-    const values = categoryColumn?.getFacetedUniqueValues();
-    return values ? Array.from(values.keys()) : [];
-  }, [categoryColumn]);
+  // const uniqueCategories = useMemo(() => {
+  //   if (!categoryColumn) {
+  //     return [];
+  //   }
+  //   const values = categoryColumn?.getFacetedUniqueValues();
+  //   return values ? Array.from(values.keys()) : [];
+  // }, [categoryColumn]);
 
-  const categoriesInTable = useMemo(
-    () =>
-      restaurantCategoryDetail.filter((item) =>
-        uniqueCategories.includes(item.value)
-      ),
-    [uniqueCategories]
-  );
+  // const categoriesInTable = useMemo(
+  //   () =>
+  //     restaurantCategoryDetail.filter((item) =>
+  //       uniqueCategories.includes(item.value)
+  //     ),
+  //   [uniqueCategories]
+  // );
 
   const isFiltered = table.getState().columnFilters.length > 0;
 
@@ -53,18 +51,18 @@ export function DataTableToolbar<TData>({
           }
           className="h-8 w-[150px] lg:w-[250px]"
         />
-        {isTableReady && categoryColumn && categoriesInTable.length > 0 && (
+        {/* {isTableReady && categoryColumn && categoriesInTable.length > 0 && (
           <DataTableFacetedFilter
             column={categoryColumn}
             title="Category"
             options={categoriesInTable}
           />
-        )}
-        <DataTableRestaurantMenuFilter
+        )} */}
+        {/* <DataTableRestaurantMenuFilter
           column={menuColumn}
           title="Menu"
           menuCount={menuCount}
-        />
+        /> */}
         {isFiltered && (
           <Button
             variant="ghost"

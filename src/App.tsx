@@ -2,6 +2,7 @@
 import EditableGoogleMap from "./components/EditableGoogleMap";
 import EditableImage from "./components/EditableImage";
 import ItemList from "./dashboard-items/ItemList";
+import Orders from "./dashboard-orders/Orders";
 import SampleSideBar from "./sidebar-sample/SampleSideBar";
 
 function App() {
@@ -30,6 +31,9 @@ function App() {
       </div>
       <div>
         <SampleSideBar />
+      </div>
+      <div>
+        <Orders />
       </div>
     </div>
   );
