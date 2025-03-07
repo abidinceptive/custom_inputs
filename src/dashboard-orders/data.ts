@@ -1,4 +1,28 @@
-import { iOrder, } from './Orders';
+import { iOrder, OrderStatus, } from './Orders';
+
+export const finalActivities: Partial<OrderStatus>[] = [
+    "rejected",
+    "cancelled",
+    "completed",
+];
+
+export const activityColors: Record<OrderStatus, string> = {
+    created: "bg-blue-500", // Blue
+    accepted: "bg-green-500", // Green
+    modified: "bg-yellow-500", // Yellow
+    completed: "bg-purple-500", // Purple
+    rejected: "bg-red-500", // Red
+    cancelled: "bg-grey-500", // Grey
+};
+
+export const statusColors: Record<OrderStatus, string> = {
+    created: "#3498db", // Blue
+    accepted: "#2ecc71", // Green
+    modified: "#f1c40f", // Yellow
+    completed: "#8e44ad", // Purple
+    rejected: "#e74c3c", // Red
+    cancelled: "#95a5a6", // Grey
+};
 
 const ordersData: iOrder[] = [
     {
