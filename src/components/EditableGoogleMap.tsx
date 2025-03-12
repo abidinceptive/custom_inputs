@@ -12,6 +12,7 @@ import {
 } from "./ui/dialog";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
+import { GOOGLE_MAPS_API_KEY } from "./MapView";
 
 // Define the location data structure
 interface LocationData {
@@ -161,7 +162,7 @@ const EditableGoogleMap = ({
     }
 
     // Replace with your actual Google Maps API key
-    const apiKey = "YOUR_GOOGLE_MAPS_API_KEY";
+    const apiKey = GOOGLE_MAPS_API_KEY;
     const script = document.createElement("script");
     script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
     script.async = true;
@@ -336,7 +337,7 @@ const EditableGoogleMap = ({
                 width="100%"
                 height="100%"
                 frameBorder="0"
-                src={`https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=${selectedLocation.lat},${selectedLocation.lng}`}
+                src={`https://www.google.com/maps/embed/v1/place?key=${GOOGLE_MAPS_API_KEY}&q=${selectedLocation.lat},${selectedLocation.lng}`}
                 allowFullScreen
               ></iframe>
             </div>
